@@ -60,6 +60,13 @@ export default function Home() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  const moveHero = (event: React.PointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    event.currentTarget.style.setProperty("--pointer-x", x.toFixed(3));
+    event.currentTarget.style.setProperty("--pointer-y", y.toFixed(3));
+  };
 
   return (
     <main>
@@ -84,11 +91,19 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="hero" id="inicio">
-        <div className="hero-orbit" aria-hidden="true">
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <div className="core">MR</div>
+      <section className="hero" id="inicio" onPointerMove={moveHero}>
+        <div className="hero-visual" aria-hidden="true">
+          <div className="portrait-backdrop" />
+          <div className="portrait-card">
+            <img src="/mauricio-reis.jpg" alt="" />
+            <span className="portrait-caption">Maurício Reis · 2026</span>
+          </div>
+          <div className="hero-ring ring-one"><i /></div>
+          <div className="hero-ring ring-two"><i /></div>
+          <span className="floating-tag tag-code">&lt;creative /&gt;</span>
+          <span className="floating-tag tag-place">JF · MG</span>
+          <span className="spark spark-one">✦</span>
+          <span className="spark spark-two">✦</span>
         </div>
         <div className="eyebrow"><span /> Disponível para novos desafios</div>
         <h1>
@@ -110,6 +125,14 @@ export default function Home() {
           <span>Role para explorar</span>
           <i>↓</i>
         </a>
+        <div className="hero-marquee" aria-hidden="true">
+          <div>
+            <span>React</span><i>✦</i><span>TypeScript</span><i>✦</i>
+            <span>Interfaces que movem</span><i>✦</i><span>Creative frontend</span><i>✦</i>
+            <span>React</span><i>✦</i><span>TypeScript</span><i>✦</i>
+            <span>Interfaces que movem</span><i>✦</i><span>Creative frontend</span><i>✦</i>
+          </div>
+        </div>
       </section>
 
       <section className="about section" id="sobre">
@@ -183,6 +206,35 @@ export default function Home() {
             <span className="visit">Visitar projeto ↗</span>
           </div>
         </a>
+      </section>
+
+      <section className="companies section" aria-labelledby="companies-title">
+        <div className="section-label" data-reveal>Empresas & projetos</div>
+        <div className="companies-head">
+          <h2 id="companies-title" data-reveal>Marcas que fazem<br />parte da história.</h2>
+          <p data-reveal>
+            Experiência construída em produtos digitais de grande escala,
+            colaborando com times multidisciplinares.
+          </p>
+        </div>
+        <div className="logo-grid" data-reveal>
+          <div className="logo-card">
+            <img src="/logos/accenture.png" alt="Accenture" />
+            <span>Consultoria & tecnologia</span>
+          </div>
+          <div className="logo-card">
+            <img src="/logos/compass-uol.png" alt="Compass UOL" />
+            <span>Transformação digital</span>
+          </div>
+          <div className="logo-card logo-wordmark logo-vivo">
+            <strong>vivo</strong>
+            <span>Telecom · B2B & B2C</span>
+          </div>
+          <div className="logo-card logo-wordmark logo-porto">
+            <strong><i>porto</i></strong>
+            <span>Seguros & serviços</span>
+          </div>
+        </div>
       </section>
 
       <section className="journey section" id="trajetoria">
