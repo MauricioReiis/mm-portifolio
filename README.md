@@ -13,26 +13,28 @@ competências e projetos como desenvolvedor Frontend e Tech Lead.
 
 ## Executando localmente
 
-Requisitos: Node.js 22.13 ou superior e pnpm.
+Requisito: Node.js 22.13 ou superior.
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 Abra o endereço exibido no terminal.
 
+Se você já utiliza pnpm, `pnpm install` e `pnpm dev` também funcionam.
+
 ## Build de produção
 
 ```bash
-pnpm build
+npm run build
 ```
 
 ## Estrutura
 
 - `app/page.tsx`: conteúdo e interações da página
 - `app/globals.css`: identidade visual, animações e responsividade
-- `public/og.png`: imagem de compartilhamento social
+- `public/og.jpg`: imagem de compartilhamento social
 
 Este é o primeiro protótipo e será evoluído com novos projetos, experiências e
 experimentos visuais.
