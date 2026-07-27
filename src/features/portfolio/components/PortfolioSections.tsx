@@ -98,11 +98,23 @@ export function CompaniesSection() {
       </div>
       <div className="logo-grid" data-reveal>
         <div className="logo-card">
-          <Image src="/logos/accenture.png" alt="Accenture" width={1800} height={579} />
+          <Image
+            src="/logos/accenture.png"
+            alt="Accenture"
+            width={1800}
+            height={579}
+            unoptimized
+          />
           <span>Consultoria & tecnologia</span>
         </div>
         <div className="logo-card">
-          <Image src="/logos/compass-uol.png" alt="Compass UOL" width={1024} height={1024} />
+          <Image
+            src="/logos/compass-uol.png"
+            alt="Compass UOL"
+            width={1024}
+            height={1024}
+            unoptimized
+          />
           <span>Transformação digital</span>
         </div>
         <div className="logo-card logo-wordmark logo-vivo">
