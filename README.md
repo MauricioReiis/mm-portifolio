@@ -1,15 +1,13 @@
-# Maurício Reis - Frontend Portfolio
+# Maurício Reis — Frontend Portfolio
 
-Protótipo de portfólio interativo desenvolvido para apresentar minha trajetória,
-competências e projetos como desenvolvedor Frontend e Tech Lead.
+Portfólio interativo para apresentar trajetória, competências e projetos como
+desenvolvedor Frontend e Tech Lead.
 
 ## Tecnologias
 
-- Next.js
-- React
-- TypeScript
-- CSS
-- Vinext / Vite
+- Next.js, React e TypeScript
+- CSS com animações nativas
+- Vinext, Vite e Cloudflare
 
 ## Executando localmente
 
@@ -20,21 +18,31 @@ npm install
 npm run dev
 ```
 
-Abra o endereço exibido no terminal.
-
-Se você já utiliza pnpm, `pnpm install` e `pnpm dev` também funcionam.
-
-## Build de produção
+## Qualidade e produção
 
 ```bash
+npm run lint
 npm run build
+npm test
 ```
 
-## Estrutura
+## Arquitetura
 
-- `app/page.tsx`: conteúdo e interações da página
-- `app/globals.css`: identidade visual, animações e responsividade
-- `public/og.jpg`: imagem de compartilhamento social
+```text
+app/
+  layout.tsx            metadados e estrutura global
+  page.tsx              ponto de entrada da página
+  globals.css           identidade visual e responsividade
+src/features/portfolio/
+  components/           seções e elementos visuais
+  hooks/                comportamento e animações
+  content.ts            projetos, experiências e demais conteúdos
+  types.ts              contratos dos conteúdos
+  PortfolioPage.tsx     composição da feature
+public/                 imagens e marcas
+worker/                 adaptação do site para hospedagem
+```
 
-Este é o primeiro protótipo e será evoluído com novos projetos, experiências e
-experimentos visuais.
+O conteúdo fica separado da apresentação. Para adicionar um projeto,
+experiência, habilidade ou formação, basta editar `content.ts`; os componentes
+renderizam as novas informações automaticamente.
