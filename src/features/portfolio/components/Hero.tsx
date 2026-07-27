@@ -23,6 +23,7 @@ export function Hero({ role }: HeroProps) {
             width={853}
             height={1280}
             priority
+            unoptimized
             sizes="(max-width: 720px) 54vw, 30vw"
           />
           <span className="portrait-caption">Maurício Reis · 2026</span>
