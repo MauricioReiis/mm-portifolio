@@ -9,6 +9,9 @@ export type Project = {
   id: string;
   name: string;
   description: string;
+  objective: string;
+  experience: string;
+  tags: string[];
   url: string;
   className: string;
   artwork: "kamila" | "prana";
@@ -19,3 +22,4 @@ export type Education = {
   course: string;
   institution: string;
 };
+
