@@ -130,11 +130,9 @@ img { max-width: 100%; }
 .project-stack h4, .project-details h4 { margin: 0 0 12px; color: var(--lime); font: 500 9px/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: .12em; }
 .project-stack ul, .experience-list ul { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
 .project-stack li { display: flex; }
-.tech-icon { display: inline-grid; width: 42px; height: 42px; place-items: center; color: white; }
-.tech-icon svg { display: block; width: 100%; height: 100%; }
-.tech-icon rect { fill: rgba(255,255,255,.06); stroke: rgba(255,255,255,.25); }
-.tech-icon text { fill: currentColor; font: 700 9px var(--font-mono); letter-spacing: -.05em; }
-.project-stack .tech-icon:hover { color: var(--lime); }
+.tech-icon { display: inline-grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(17,18,15,.12); border-radius: 11px; background: #f7f7f3; box-shadow: inset 0 1px rgba(255,255,255,.8); }
+.tech-icon > span { display: block; width: 23px; height: 23px; background: var(--tech-color); -webkit-mask: var(--tech-icon) center/contain no-repeat; mask: var(--tech-icon) center/contain no-repeat; transition: transform .25s ease; }
+.project-stack .tech-icon:hover > span { transform: scale(1.12) rotate(-4deg); }
 .project-details { border-top: 1px solid rgba(255,255,255,.14); }
 .project-details summary { display: flex; align-items: center; justify-content: space-between; padding: 17px 0; cursor: pointer; color: #d7d8d2; font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; list-style: none; }
 .project-details summary::-webkit-details-marker { display: none; }
@@ -176,7 +174,8 @@ img { max-width: 100%; }
 .portfolio-stack > div > p { margin: 9px 0 0; color: #d7d9ff; font-size: 14px; }
 .portfolio-stack ul { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .portfolio-stack li { display: flex; align-items: center; gap: 9px; padding: 8px 13px 8px 8px; border: 1px solid rgba(255,255,255,.25); border-radius: 100px; background: rgba(255,255,255,.06); font-size: 11px; }
-.portfolio-stack .tech-icon { width: 34px; height: 34px; }
+.portfolio-stack .tech-icon { width: 34px; height: 34px; border-color: rgba(255,255,255,.45); }
+.portfolio-stack .tech-icon > span { width: 19px; height: 19px; }
 
 .trust .section-heading { grid-template-columns: .35fr 1.3fr; }
 .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 12px 12px 0 var(--ink); }

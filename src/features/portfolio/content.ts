@@ -39,7 +39,7 @@ export const projects: Project[] = [
   },
   {
     id: "02",
-    name: "Prāna Infra",
+    name: "Prana Infra",
     category: "Site institucional · Infraestrutura",
     summary:
       "Site institucional construído em blocos modulares para apresentar a empresa, suas áreas de atuação e projetos em diferentes tamanhos de tela.",

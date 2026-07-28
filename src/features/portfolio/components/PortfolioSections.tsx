@@ -18,7 +18,7 @@ function ProjectArtwork({ project }: { project: Project }) {
   return (
     <div className="project-art art-prana" aria-hidden="true">
       <div className="building"><i /><i /><i /><i /></div>
-      <strong>PRĀNA</strong>
+      <strong>PRANA</strong>
       <p>Infraestrutura que<br />transforma cidades.</p>
       <span>02 · escala e precisão</span>
     </div>
