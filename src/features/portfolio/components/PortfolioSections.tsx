@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { education, experiences, projects, services, skills } from "../content";
+import { education, experiences, experienceTimeline, projects, services, skills } from "../content";
 import type { Project } from "../types";
 import { TechIcon } from "./TechIcon";
 
@@ -179,6 +179,40 @@ export function ExperienceSection() {
           </article>
         ))}
       </div>
+      <details className="career-timeline">
+        <summary>
+          <span className="timeline-label timeline-label-closed">Exibir linha do tempo completa</span>
+          <span className="timeline-label timeline-label-open">Ocultar linha do tempo</span>
+          <span className="timeline-summary-icon" aria-hidden="true">+</span>
+        </summary>
+        <div className="timeline-intro">
+          <span>Da Compass UOL até hoje</span>
+          <p>Projetos, responsabilidades e tecnologias que marcaram cada etapa.</p>
+        </div>
+        <div className="timeline-scroll" tabIndex={0} aria-label="Linha do tempo profissional; deslize horizontalmente para explorar">
+          <ol>
+            {experienceTimeline.map((event) => (
+              <li key={`${event.period}-${event.project}`}>
+                <time>{event.period}</time>
+                <div className="timeline-node" aria-hidden="true" />
+                <article>
+                  <span>{event.company}</span>
+                  <h3>{event.project}</h3>
+                  <p>{event.description}</p>
+                  <ul aria-label={`Tecnologias usadas em ${event.project}`}>
+                    {event.technologies.map((technology) => (
+                      <li key={technology}>
+                        <TechIcon name={technology} />
+                        <span>{technology}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </details>
     </section>
   );
 }

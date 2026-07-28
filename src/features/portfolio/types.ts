@@ -19,6 +19,14 @@ export type Experience = {
   technologies: string[];
 };
 
+export type TimelineEvent = {
+  period: string;
+  company: string;
+  project: string;
+  description: string;
+  technologies: string[];
+};
+
 export type Service = {
   number: string;
   title: string;

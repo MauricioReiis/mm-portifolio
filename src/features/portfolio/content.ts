@@ -83,6 +83,41 @@ export const experiences: Experience[] = [
   },
 ];
 
+export const experienceTimeline = [
+  {
+    period: "2023",
+    company: "Compass UOL",
+    project: "Vivo B2C",
+    description:
+      "Entrada em produtos digitais de grande escala, construindo e evoluindo jornadas responsivas para o ecossistema Vivo.",
+    technologies: ["React", "Angular", "TypeScript", "AWS"],
+  },
+  {
+    period: "2024",
+    company: "Compass UOL",
+    project: "AI Cockpit",
+    description:
+      "Desenvolvimento de interfaces orientadas a dados e integração de experiências frontend com serviços e APIs.",
+    technologies: ["React", "TypeScript", "APIs", "AWS"],
+  },
+  {
+    period: "2024 — 2025",
+    company: "Compass UOL",
+    project: "The North · Tech Lead",
+    description:
+      "Liderança técnica, arquitetura de componentes, code reviews e evolução da qualidade do produto e do time.",
+    technologies: ["Angular", "TypeScript", "CSS", "Testes"],
+  },
+  {
+    period: "2025 — hoje",
+    company: "Accenture",
+    project: "Vivo Telefônica B2B",
+    description:
+      "Construção e evolução de interfaces responsivas, integrações e testes automatizados para operações B2B.",
+    technologies: ["Vue.js", "TypeScript", "APIs", "Testes"],
+  },
+] satisfies import("./types").TimelineEvent[];
+
 export const skills = [
   "React",
   "TypeScript",
