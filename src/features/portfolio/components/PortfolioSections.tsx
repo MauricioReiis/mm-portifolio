@@ -183,7 +183,7 @@ export function SkillsSection() {
 
 export function TrustSection() {
   return (
-    <section className="trust section" aria-labelledby="trust-title">
+    <section className="trust section" id="credenciais" aria-labelledby="trust-title">
       <div className="section-heading">
         <span>Empresas e projetos</span>
         <h2 id="trust-title">Experiência construída em ambientes exigentes.</h2>
