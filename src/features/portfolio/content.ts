@@ -34,6 +34,7 @@ export const projects: Project[] = [
     implementation:
       "Interface componentizada em React, empacotada com Vite e publicada na Vercel. O CSS responsivo organiza tipografia e composição para diferentes telas, enquanto a observação de viewport ativa as entradas de conteúdo sem bloquear a navegação.",
     url: "https://kamilasiqueira.com/",
+    repositoryUrl: "https://github.com/MauricioReiis/KamilaSiqueira-MKT",
     tags: ["React", "Vite", "JavaScript", "CSS responsivo", "Vercel"],
     artwork: "kamila",
   },
@@ -46,6 +47,7 @@ export const projects: Project[] = [
     implementation:
       "Aplicação React com build otimizado pelo Vite e hospedagem na Vercel. A estrutura separa o conteúdo em componentes reutilizáveis, organiza ativos visuais responsivos e gera uma entrega estática rápida.",
     url: "https://www.pranainfra.com.br/",
+    repositoryUrl: "https://github.com/MauricioReiis/prana-infra",
     tags: ["React", "Vite", "JavaScript", "CSS responsivo", "Vercel"],
     artwork: "prana",
   },

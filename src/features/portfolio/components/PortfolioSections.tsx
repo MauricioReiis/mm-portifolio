@@ -98,8 +98,13 @@ export function ProjectsSection() {
                 <div>
                   <h4>Implementação</h4>
                   <p>{project.implementation}</p>
-                  <a href={project.url} target="_blank" rel="noreferrer">
-                    Abrir projeto <span>↗</span>
+                  <a
+                    href={project.repositoryUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Ver o código-fonte de ${project.name} no GitHub em uma nova aba`}
+                  >
+                    Ver código no GitHub <span>↗</span>
                   </a>
                 </div>
               </details>

@@ -5,6 +5,7 @@ export type Project = {
   summary: string;
   implementation: string;
   url: string;
+  repositoryUrl: string;
   tags: string[];
   artwork: "kamila" | "prana";
 };
