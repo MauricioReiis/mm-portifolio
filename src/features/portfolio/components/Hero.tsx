@@ -15,12 +15,6 @@ export function Hero() {
           Desenvolvo sites e produtos digitais que unem
           <em> clareza, performance e personalidade.</em>
         </h1>
-        <p className="hero-summary">
-          Sou Maurício Reis, desenvolvedor Frontend Sênior em Juiz de Fora,
-          especializado em React, TypeScript, Angular e Vue.js. Transformo
-          objetivos de negócio em experiências digitais rápidas, acessíveis e
-          escaláveis.
-        </p>
         <div className="hero-actions">
           <a className="button primary" href="#projetos">Ver projetos <span>↓</span></a>
           <a className="button secondary" href="mailto:mauricioreiscds@gmail.com">
