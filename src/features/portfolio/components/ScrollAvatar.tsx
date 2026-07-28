@@ -22,7 +22,7 @@ const sectionOrder = Object.keys(avatarBySection) as AvatarSection[];
 
 export function ScrollAvatar() {
   const [activeSection, setActiveSection] = useState<AvatarSection>("inicio");
-  const characterRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -55,7 +55,9 @@ export function ScrollAvatar() {
         let pointerY = window.innerHeight / 2;
 
         const updatePointer = () => {
-          const character = characterRef.current;
+          const character = stageRef.current?.querySelector<HTMLElement>(
+            ".avatar-reaction.is-active .avatar-reaction-motion",
+          );
           if (character) {
             const normalizedX = pointerX / window.innerWidth - 0.5;
             const normalizedY = pointerY / window.innerHeight - 0.5;
@@ -93,21 +95,30 @@ export function ScrollAvatar() {
 
   return (
     <aside
+      ref={stageRef}
       className="avatar-reactions"
       aria-hidden="true"
       data-section={activeSection}
     >
-      <div ref={characterRef} className="avatar-reaction" key={activeSection}>
-        <Image
-          src={avatarBySection[activeSection]}
-          alt=""
-          width={900}
-          height={1350}
-          unoptimized
-          priority={activeSection === "inicio"}
-          sizes="(max-width: 900px) 0px, 160px"
-        />
-      </div>
+      {sectionOrder.map((sectionId) => (
+        <div
+          className={`avatar-reaction${activeSection === sectionId ? " is-active" : ""}`}
+          data-avatar-section={sectionId}
+          key={sectionId}
+        >
+          <div className="avatar-reaction-motion">
+            <Image
+              src={avatarBySection[sectionId]}
+              alt=""
+              width={900}
+              height={1350}
+              unoptimized
+              priority={sectionId === "inicio"}
+              sizes="(max-width: 900px) 0px, 160px"
+            />
+          </div>
+        </div>
+      ))}
     </aside>
   );
 }

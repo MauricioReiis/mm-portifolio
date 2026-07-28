@@ -192,34 +192,49 @@ footer h2 em { color: #4e550e; }
 .avatar-reaction {
   position: absolute;
   width: clamp(104px, 8.2vw, 142px);
-  will-change: transform;
-  filter: drop-shadow(0 13px 18px rgba(20,22,17,.2));
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(7px) drop-shadow(0 13px 18px rgba(20,22,17,.12));
+  transform: translateY(18px) scale(.82) rotate(-3deg);
   transform-origin: 50% 80%;
-  animation: avatar-react-in .55s cubic-bezier(.16,1,.3,1) both, avatar-idle 3.4s .55s ease-in-out infinite;
+  transition:
+    opacity .42s ease,
+    filter .5s ease,
+    transform .55s cubic-bezier(.16,1,.3,1),
+    visibility 0s linear .55s;
+  will-change: opacity, filter, transform;
 }
-.avatar-reaction img {
+.avatar-reaction.is-active {
+  opacity: .97;
+  visibility: visible;
+  filter: blur(0) drop-shadow(0 13px 18px rgba(20,22,17,.2));
+  transform: translateY(0) scale(1) rotate(0);
+  transition-delay: .08s, .08s, .08s, 0s;
+}
+.avatar-reaction-motion {
+  transform-origin: 50% 80%;
+  will-change: transform;
+  animation: avatar-idle 3.4s ease-in-out infinite;
+}
+.avatar-reaction-motion img {
   display: block;
   width: 100%;
   height: auto;
 }
-.avatar-reactions[data-section="inicio"] .avatar-reaction { right: 3.5vw; bottom: 3vh; }
-.avatar-reactions[data-section="servicos"] .avatar-reaction { left: 3vw; bottom: 4vh; }
-.avatar-reactions[data-section="projetos"] .avatar-reaction { right: 2.5vw; top: 18vh; }
-.avatar-reactions[data-section="sobre"] .avatar-reaction { right: 3vw; bottom: 5vh; }
-.avatar-reactions[data-section="experiencia"] .avatar-reaction { left: 2.5vw; top: 16vh; }
-.avatar-reactions[data-section="habilidades"] .avatar-reaction { right: 2.5vw; bottom: 4vh; }
-.avatar-reactions[data-section="credenciais"] .avatar-reaction { left: 3vw; bottom: 4vh; }
-.avatar-reactions[data-section="contato"] .avatar-reaction { right: 3vw; bottom: 3vh; }
+.avatar-reaction[data-avatar-section="inicio"] { right: 3.5vw; bottom: 3vh; }
+.avatar-reaction[data-avatar-section="servicos"] { left: 3vw; bottom: 4vh; }
+.avatar-reaction[data-avatar-section="projetos"] { right: 2.5vw; top: 18vh; }
+.avatar-reaction[data-avatar-section="sobre"] { right: 3vw; bottom: 5vh; }
+.avatar-reaction[data-avatar-section="experiencia"] { left: 2.5vw; top: 16vh; }
+.avatar-reaction[data-avatar-section="habilidades"] { right: 2.5vw; bottom: 4vh; }
+.avatar-reaction[data-avatar-section="credenciais"] { left: 3vw; bottom: 4vh; }
+.avatar-reaction[data-avatar-section="contato"] { right: 3vw; bottom: 3vh; }
 
 main, footer { position: relative; z-index: 2; }
 
-@keyframes avatar-react-in {
-  from { opacity: 0; transform: translateY(20px) scale(.72) rotate(-4deg); }
-  to { opacity: .97; transform: translateY(0) scale(1) rotate(0); }
-}
 @keyframes avatar-idle {
-  0%, 100% { margin-top: 0; }
-  50% { margin-top: -6px; }
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -6px; }
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
