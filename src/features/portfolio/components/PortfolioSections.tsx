@@ -244,7 +244,16 @@ export function TrustSection() {
             </header>
             <h3>{item.course}</h3>
             <p>{item.institution}</p>
-            <strong>{item.period.toLowerCase().includes("andamento") ? "Em curso" : "Concluído"}</strong>
+            <strong
+              className={
+                item.period.toLowerCase().includes("andamento")
+                  ? "education-status is-current"
+                  : "education-status is-complete"
+              }
+            >
+              <i aria-hidden="true" />
+              {item.period.toLowerCase().includes("andamento") ? "Em curso" : "Concluído"}
+            </strong>
           </article>
         ))}
       </div>
