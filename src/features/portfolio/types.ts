@@ -2,8 +2,9 @@ export type Project = {
   id: string;
   name: string;
   category: string;
-  objective: string;
-  solution: string;
+  summary: string;
+  role: string;
+  implementation: string;
   url: string;
   tags: string[];
   artwork: "kamila" | "prana";

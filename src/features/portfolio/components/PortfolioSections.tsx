@@ -54,20 +54,26 @@ export function ProjectsSection() {
     <section className="projects section" id="projetos" aria-labelledby="projects-title">
       <div className="section-heading light">
         <span>02 · Projetos selecionados</span>
-        <h2 id="projects-title">Cada projeto pede uma linguagem própria.</h2>
+        <h2 id="projects-title">Do código ao deploy.</h2>
         <p>
-          Estudos de caso de sites customizados, construídos para traduzir o
-          objetivo do cliente em uma experiência clara e memorável.
+          Projetos reais apresentados pela implementação: arquitetura frontend,
+          decisões técnicas, ferramentas e responsabilidades.
         </p>
       </div>
       <div className="case-studies">
         {projects.map((project) => (
           <article className={`project-case project-${project.artwork}`} key={project.id}>
-            <header>
-              <span>{project.id} / {String(projects.length).padStart(2, "0")}</span>
+            <header className="project-header">
+              <span>Projeto {project.id} / {String(projects.length).padStart(2, "0")}</span>
               <p>{project.category}</p>
-              <h3>{project.name}</h3>
+              <a href={project.url} target="_blank" rel="noreferrer">
+                Abrir projeto <span>↗</span>
+              </a>
             </header>
+            <div className="project-intro">
+              <h3>{project.name}</h3>
+              <p>{project.summary}</p>
+            </div>
             <a
               className="project-preview"
               href={project.url}
@@ -77,20 +83,23 @@ export function ProjectsSection() {
             >
               <div className="browser-bar"><i /><i /><i /><small>{project.url.replace("https://", "")}</small></div>
               <ProjectArtwork project={project} />
-              <span className="project-link">Visitar site ↗</span>
+              <span className="project-link">Ver online ↗</span>
             </a>
-            <div className="project-story">
+            <div className="project-details">
               <div>
-                <h4>O desafio</h4>
-                <p>{project.objective}</p>
+                <h4>Minha atuação</h4>
+                <p>{project.role}</p>
               </div>
               <div>
-                <h4>A solução</h4>
-                <p>{project.solution}</p>
+                <h4>Implementação</h4>
+                <p>{project.implementation}</p>
               </div>
-              <ul aria-label="Tecnologias e competências">
-                {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
-              </ul>
+              <div className="project-stack">
+                <h4>Stack utilizada</h4>
+                <ul aria-label={`Tecnologias utilizadas em ${project.name}`}>
+                  {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                </ul>
+              </div>
             </div>
           </article>
         ))}
