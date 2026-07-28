@@ -73,7 +73,7 @@ export function ProjectsSection() {
             >
               <div className="browser-bar"><i /><i /><i /><small>{project.url.replace("https://", "")}</small></div>
               <ProjectArtwork project={project} />
-              <span className="project-link">Ver online ↗</span>
+              <span className="project-link">Visitar projeto</span>
             </a>
             <div className="project-card-content">
               <header className="project-header">
