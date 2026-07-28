@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MineiroPhrase } from "./MineiroPhrase";
 
 export function Hero() {
   return (
@@ -40,7 +41,7 @@ export function Hero() {
             sizes="(max-width: 760px) 80vw, 32vw"
           />
         </div>
-        <span className="portrait-code">&lt;feito com intenção /&gt;</span>
+        <MineiroPhrase />
         <span className="portrait-location">JF · MG</span>
         <div className="portrait-orbit" aria-hidden="true"><i /><i /></div>
       </div>
