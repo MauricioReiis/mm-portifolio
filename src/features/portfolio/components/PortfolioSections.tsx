@@ -190,7 +190,7 @@ export function TrustSection() {
       </div>
       <div className="trust-grid">
         <article><div className="trust-logo"><Image src="/logos/accenture.png" alt="Accenture" width={1800} height={579} unoptimized /></div><span>Consultoria e tecnologia</span></article>
-        <article><div className="trust-logo"><Image src="/logos/compass-uol.png" alt="Compass UOL" width={1024} height={1024} unoptimized /></div><span>Transformação digital</span></article>
+        <article><div className="trust-logo"><Image src="/logos/compass-uol-cropped.png" alt="Compass UOL" width={964} height={188} unoptimized /></div><span>Transformação digital</span></article>
         <article className="wordmark vivo"><div className="trust-logo"><strong>vivo</strong></div><span>Telecom B2B e B2C</span></article>
         <article className="wordmark porto"><div className="trust-logo"><strong>porto</strong></div><span>Seguros e serviços</span></article>
       </div>

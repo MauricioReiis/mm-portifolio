@@ -9,6 +9,7 @@ import {
   TrustSection,
 } from "./components/PortfolioSections";
 import { ScrollAvatar } from "./components/ScrollAvatar";
+import { SectionMotion } from "./components/SectionMotion";
 import { SiteHeader } from "./components/SiteHeader";
 
 export function PortfolioPage() {
@@ -17,6 +18,7 @@ export function PortfolioPage() {
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <SiteHeader />
       <ScrollAvatar />
+      <SectionMotion />
       <main id="conteudo">
         <Hero />
         <ServicesSection />
