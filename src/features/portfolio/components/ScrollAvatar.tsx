@@ -46,6 +46,10 @@ export function ScrollAvatar() {
         const xTo = gsap.quickTo(character, "x", { duration: 0.45, ease: "power3.out" });
         const yTo = gsap.quickTo(character, "y", { duration: 0.45, ease: "power3.out" });
         const rotateTo = gsap.quickTo(character, "rotation", { duration: 0.55, ease: "power3.out" });
+        const travelXTo = gsap.quickTo(avatar, "x", { duration: 0.32, ease: "power2.out" });
+        const travelYTo = gsap.quickTo(avatar, "y", { duration: 0.32, ease: "power2.out" });
+        const travelRotateTo = gsap.quickTo(avatar, "rotation", { duration: 0.3, ease: "power2.out" });
+        const travelScaleTo = gsap.quickTo(avatar, "scale", { duration: 0.35, ease: "power2.out" });
 
         const updatePointer = () => {
           const normalizedX = pointerX / window.innerWidth - 0.5;
@@ -64,28 +68,31 @@ export function ScrollAvatar() {
 
         window.addEventListener("pointermove", onPointerMove, { passive: true });
 
-        const path = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: document.documentElement,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.55,
-            invalidateOnRefresh: true,
-            onUpdate: ({ direction, getVelocity }) => {
-              stage.dataset.direction = direction > 0 ? "down" : "up";
-              stage.style.setProperty("--scroll-velocity", String(Math.min(Math.abs(getVelocity()) / 2200, 1)));
-            },
+        const path = ScrollTrigger.create({
+          trigger: document.body,
+          start: "top top",
+          end: "bottom bottom",
+          invalidateOnRefresh: true,
+          onUpdate: ({ progress, direction, getVelocity }) => {
+            const horizontalWave = Math.sin(progress * Math.PI * 5.25);
+            const verticalWave = Math.cos(progress * Math.PI * 7);
+            const maxX = Math.max(window.innerWidth - avatar.offsetWidth - 36, 0);
+            const minY = 82;
+            const maxY = Math.max(window.innerHeight - avatar.offsetHeight - 22, minY);
+            const x = maxX * (0.5 + horizontalWave * 0.44);
+            const y = minY + (maxY - minY) * (0.5 + verticalWave * 0.5);
+            const velocity = Math.min(Math.abs(getVelocity()) / 2200, 1);
+
+            stage.dataset.direction = direction > 0 ? "down" : "up";
+            stage.style.setProperty("--scroll-velocity", String(velocity));
+            travelXTo(x);
+            travelYTo(y);
+            travelRotateTo(direction * (3 + velocity * 8) + horizontalWave * 2);
+            travelScaleTo(0.88 + Math.sin(progress * Math.PI * 9) * 0.08);
           },
         });
 
-        path
-          .fromTo(avatar, { x: () => window.innerWidth * 0.71, y: () => window.innerHeight * 0.28, scale: 0.82 }, { x: () => window.innerWidth * 0.56, y: () => window.innerHeight * 0.46, scale: 0.92, duration: 0.14 })
-          .to(avatar, { x: () => window.innerWidth * 0.08, y: () => window.innerHeight * 0.16, scale: 0.78, rotation: -4, duration: 0.15 })
-          .to(avatar, { x: () => window.innerWidth * 0.69, y: () => window.innerHeight * 0.08, scale: 0.86, rotation: 2, duration: 0.18 })
-          .to(avatar, { x: () => window.innerWidth * 0.14, y: () => window.innerHeight * 0.34, scale: 0.74, rotation: -2, duration: 0.16 })
-          .to(avatar, { x: () => window.innerWidth * 0.62, y: () => window.innerHeight * 0.23, scale: 0.8, rotation: 3, duration: 0.18 })
-          .to(avatar, { x: () => window.innerWidth * 0.37, y: () => window.innerHeight * 0.05, scale: 0.9, rotation: 0, duration: 0.19 });
+        path.update();
 
         const sections = document.querySelectorAll<HTMLElement>("section[id], footer[id]");
         sections.forEach((section) => {
@@ -115,6 +122,7 @@ export function ScrollAvatar() {
         return () => {
           window.removeEventListener("pointermove", onPointerMove);
           if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
+          path.kill();
         };
       },
     );
