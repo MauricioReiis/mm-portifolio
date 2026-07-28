@@ -1,0 +1,30 @@
+# Maurício Reis — Desenvolvedor Frontend Sênior
+
+> Portfólio profissional de Maurício Reis, desenvolvedor Frontend Sênior e Tech Lead brasileiro.
+
+Maurício Reis cria sites customizados, landing pages, produtos digitais e
+aplicações web responsivas. Trabalha com React, TypeScript, Angular, Vue.js,
+JavaScript, HTML semântico, CSS, testes automatizados, APIs, AWS e Azure.
+
+Localização: Juiz de Fora, Minas Gerais, Brasil.
+Disponibilidade: oportunidades remotas e projetos no Brasil.
+
+## Serviços
+
+- Desenvolvimento de sites e landing pages customizadas.
+- Desenvolvimento frontend de produtos e aplicações web.
+- Arquitetura frontend, performance, acessibilidade e SEO técnico.
+- Liderança técnica, revisão de código e evolução de equipes.
+
+## Projetos selecionados
+
+- Kamila Siqueira: experiência digital autoral e responsiva.
+  https://kamilasiqueira.com/
+- Prāna Infra: site institucional para empresa de infraestrutura.
+  https://www.pranainfra.com.br/
+
+## Contato e perfis oficiais
+
+- E-mail: mauricioreiscds@gmail.com
+- LinkedIn: https://www.linkedin.com/in/maur%C3%ADcio-reis-45634a1a9/
+- GitHub: https://github.com/MauricioReiis

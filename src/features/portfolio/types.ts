@@ -1,20 +1,28 @@
-export type Experience = {
-  period: string;
-  company: string;
-  project: string;
-  description: string;
-};
-
 export type Project = {
   id: string;
   name: string;
-  description: string;
+  category: string;
   objective: string;
-  experience: string;
-  tags: string[];
+  solution: string;
   url: string;
-  className: string;
+  tags: string[];
   artwork: "kamila" | "prana";
+};
+
+export type Experience = {
+  period: string;
+  company: string;
+  role: string;
+  project: string;
+  description: string;
+  technologies: string[];
+};
+
+export type Service = {
+  number: string;
+  title: string;
+  description: string;
+  outcome: string;
 };
 
 export type Education = {
@@ -22,4 +30,3 @@ export type Education = {
   course: string;
   institution: string;
 };
-

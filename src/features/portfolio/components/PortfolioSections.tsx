@@ -1,53 +1,49 @@
-import { education, experiences, projects, skills } from "../content";
-import type { Project } from "../types";
 import Image from "next/image";
+import { education, experiences, projects, services, skills } from "../content";
+import type { Project } from "../types";
 
-function ProjectArtwork({ type }: { type: Project["artwork"] }) {
-  if (type === "kamila") {
+function ProjectArtwork({ project }: { project: Project }) {
+  if (project.artwork === "kamila") {
     return (
-      <div className="project-art art-kamila">
-        <span className="art-note">Sua liberdade começa<br />com uma escolha.</span>
+      <div className="project-art art-kamila" aria-hidden="true">
+        <p>Sua liberdade começa<br />com uma escolha.</p>
         <div className="art-sun" />
-        <div className="art-card">Kamila<br />Siqueira</div>
+        <div className="art-editorial">Kamila<br />Siqueira</div>
+        <span>01 · presença autoral</span>
       </div>
     );
   }
 
   return (
-    <div className="project-art art-prana">
+    <div className="project-art art-prana" aria-hidden="true">
       <div className="building"><i /><i /><i /><i /></div>
-      <span className="prana-logo">PRĀNA</span>
-      <span className="art-note">Infraestrutura que<br />transforma cidades.</span>
+      <strong>PRĀNA</strong>
+      <p>Infraestrutura que<br />transforma cidades.</p>
+      <span>02 · escala e precisão</span>
     </div>
   );
 }
 
-export function AboutSection() {
+export function ServicesSection() {
   return (
-    <section className="about section" id="sobre">
-      <div className="section-label" data-reveal>01 — Sobre</div>
-      <div className="about-grid">
-        <h2 data-reveal>Código é ferramenta.<br /><span>Experiência é o produto.</span></h2>
-        <div data-reveal>
-          <p className="lead">
-            Uno engenharia, visão de produto e cuidado visual para criar
-            soluções que funcionam tão bem quanto parecem.
-          </p>
-          <p>
-            Tenho experiência em projetos corporativos, arquitetura baseada
-            em componentes, integração com APIs e ambientes cloud. Como Tech
-            Lead, também atuei em decisões técnicas, code reviews e evolução
-            de equipes.
-          </p>
-          <a className="text-link" href="#trajetoria">
-            Conheça minha trajetória <span>↗</span>
-          </a>
-        </div>
+    <section className="services section" id="servicos" aria-labelledby="services-title">
+      <div className="section-heading">
+        <span>01 · O que eu resolvo</span>
+        <h2 id="services-title">Desenvolvimento frontend orientado a resultado.</h2>
+        <p>
+          Da primeira conversa ao deploy, conecto estratégia, interface e
+          tecnologia para criar produtos digitais que ajudam negócios a crescer.
+        </p>
       </div>
-      <div className="metrics">
-        <div data-reveal><strong>5+</strong><span>anos de experiência</span></div>
-        <div data-reveal><strong>4</strong><span>frameworks dominados</span></div>
-        <div data-reveal><strong>∞</strong><span>curiosidade para evoluir</span></div>
+      <div className="service-list">
+        {services.map((service) => (
+          <article key={service.number}>
+            <span>{service.number}</span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <strong>{service.outcome}</strong>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -55,54 +51,44 @@ export function AboutSection() {
 
 export function ProjectsSection() {
   return (
-    <section className="projects section" id="projetos">
-      <div className="section-label light" data-reveal>02 — Projetos selecionados</div>
-      <div className="project-intro">
-        <h2 data-reveal>Não entrego apenas sites.<br /><em>Crio atmosferas.</em></h2>
-        <p data-reveal>
-          Cada trabalho nasce de uma necessidade diferente e ganha uma
-          linguagem própria — do primeiro scroll ao último detalhe.
+    <section className="projects section" id="projetos" aria-labelledby="projects-title">
+      <div className="section-heading light">
+        <span>02 · Projetos selecionados</span>
+        <h2 id="projects-title">Cada projeto pede uma linguagem própria.</h2>
+        <p>
+          Estudos de caso de sites customizados, construídos para traduzir o
+          objetivo do cliente em uma experiência clara e memorável.
         </p>
       </div>
       <div className="case-studies">
         {projects.map((project) => (
-          <article
-            className={`project-case ${project.className}`}
-            data-reveal
-            key={project.id}
-          >
-            <div className="case-orbit" aria-hidden="true"><i /><i /></div>
-            <div className="case-heading">
-              <span className="project-index">{project.id} / 02</span>
-              <p>{project.description}</p>
+          <article className={`project-case project-${project.artwork}`} key={project.id}>
+            <header>
+              <span>{project.id} / {String(projects.length).padStart(2, "0")}</span>
+              <p>{project.category}</p>
               <h3>{project.name}</h3>
-            </div>
+            </header>
             <a
               className="project-preview"
               href={project.url}
               target="_blank"
               rel="noreferrer"
-              aria-label={`Visitar projeto ${project.name}`}
+              aria-label={`Abrir o projeto ${project.name} em uma nova aba`}
             >
-              <div className="browser-frame">
-                <div className="browser-top">
-                  <span /><span /><span />
-                  <small>{project.url.replace("https://", "")}</small>
-                </div>
-                <ProjectArtwork type={project.artwork} />
-              </div>
-              <span className="preview-action">Explorar projeto ↗</span>
+              <div className="browser-bar"><i /><i /><i /><small>{project.url.replace("https://", "")}</small></div>
+              <ProjectArtwork project={project} />
+              <span className="project-link">Visitar site ↗</span>
             </a>
-            <div className="case-story">
+            <div className="project-story">
               <div>
-                <span className="story-label">O que o cliente buscava</span>
+                <h4>O desafio</h4>
                 <p>{project.objective}</p>
               </div>
               <div>
-                <span className="story-label">A experiência criada</span>
-                <p>{project.experience}</p>
+                <h4>A solução</h4>
+                <p>{project.solution}</p>
               </div>
-              <ul aria-label="Competências aplicadas">
+              <ul aria-label="Tecnologias e competências">
                 {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
               </ul>
             </div>
@@ -113,63 +99,61 @@ export function ProjectsSection() {
   );
 }
 
-export function CompaniesSection() {
+export function AboutSection() {
   return (
-    <section className="companies section" aria-labelledby="companies-title">
-      <div className="section-label" data-reveal>Empresas & projetos</div>
-      <div className="companies-head">
-        <h2 id="companies-title" data-reveal>Marcas que fazem<br />parte da história.</h2>
-        <p data-reveal>
-          Experiência construída em produtos digitais de grande escala,
-          colaborando com times multidisciplinares.
-        </p>
+    <section className="about section" id="sobre" aria-labelledby="about-title">
+      <div className="about-statement">
+        <span>03 · Como eu trabalho</span>
+        <h2 id="about-title">
+          Engenharia consistente.<br />
+          <em>Experiência humana.</em>
+        </h2>
       </div>
-      <div className="logo-grid" data-reveal>
-        <div className="logo-card">
-          <Image
-            src="/logos/accenture.png"
-            alt="Accenture"
-            width={1800}
-            height={579}
-            unoptimized
-          />
-          <span>Consultoria & tecnologia</span>
-        </div>
-        <div className="logo-card">
-          <Image
-            src="/logos/compass-uol.png"
-            alt="Compass UOL"
-            width={1024}
-            height={1024}
-            unoptimized
-          />
-          <span>Transformação digital</span>
-        </div>
-        <div className="logo-card logo-wordmark logo-vivo">
-          <strong>vivo</strong><span>Telecom · B2B & B2C</span>
-        </div>
-        <div className="logo-card logo-wordmark logo-porto">
-          <strong><i>porto</i></strong><span>Seguros & serviços</span>
-        </div>
+      <div className="about-content">
+        <p className="lead">
+          Um bom frontend não é apenas bonito: ele precisa ser rápido,
+          compreensível, acessível e simples de manter.
+        </p>
+        <p>
+          Trabalho próximo de design, produto e negócio para entender o problema
+          antes de escolher a tecnologia. Como Tech Lead, também atuo na
+          arquitetura, revisão de código, qualidade e desenvolvimento do time.
+        </p>
+        <dl className="principles">
+          <div><dt>01</dt><dd>Clareza antes de complexidade</dd></div>
+          <div><dt>02</dt><dd>Performance desde a arquitetura</dd></div>
+          <div><dt>03</dt><dd>Movimento com propósito</dd></div>
+          <div><dt>04</dt><dd>Acessibilidade como padrão</dd></div>
+        </dl>
       </div>
     </section>
   );
 }
 
-export function JourneySection() {
+export function ExperienceSection() {
   return (
-    <section className="journey section" id="trajetoria">
-      <div className="section-label" data-reveal>03 — Trajetória</div>
-      <div className="journey-head">
-        <h2 data-reveal>Experiência que<br />constrói repertório.</h2>
-        <p data-reveal>Do código à liderança técnica, uma evolução contínua.</p>
+    <section className="experience section" id="experiencia" aria-labelledby="experience-title">
+      <div className="section-heading">
+        <span>04 · Experiência profissional</span>
+        <h2 id="experience-title">Produtos de escala, times diversos e evolução contínua.</h2>
+        <p>
+          Mais de cinco anos criando e liderando interfaces para empresas de
+          tecnologia, telecomunicações e serviços.
+        </p>
       </div>
-      <div className="timeline">
+      <div className="experience-list">
         {experiences.map((item) => (
-          <article key={`${item.company}-${item.project}`} data-reveal>
+          <article key={`${item.company}-${item.period}`}>
             <time>{item.period}</time>
-            <div><span>{item.company}</span><h3>{item.project}</h3></div>
+            <div className="experience-role">
+              <span>{item.company}</span>
+              <h3>{item.role}</h3>
+              <p>{item.project}</p>
+            </div>
             <p>{item.description}</p>
+            <ul aria-label={`Tecnologias usadas em ${item.company}`}>
+              {item.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+            </ul>
           </article>
         ))}
       </div>
@@ -177,31 +161,42 @@ export function JourneySection() {
   );
 }
 
-export function ToolkitSection() {
+export function SkillsSection() {
   return (
-    <section className="toolkit section" id="habilidades">
-      <div className="section-label light" data-reveal>04 — Toolkit</div>
-      <div className="toolkit-grid">
-        <h2 data-reveal>Tecnologia com<br /><em>propósito.</em></h2>
-        <div className="skills" data-reveal>
-          {skills.map((skill, index) => (
-            <span key={skill}>
-              <small>{String(index + 1).padStart(2, "0")}</small>{skill}
-            </span>
-          ))}
-        </div>
+    <section className="skills-section section" id="habilidades" aria-labelledby="skills-title">
+      <div>
+        <span className="section-index">05 · Competências</span>
+        <h2 id="skills-title">Tecnologia é meio.<br /><em>Impacto é o objetivo.</em></h2>
+        <p>
+          Um repertório frontend completo para desenvolver, testar, entregar e
+          evoluir experiências digitais.
+        </p>
       </div>
+      <ul className="skills-cloud">
+        {skills.map((skill, index) => (
+          <li key={skill}><small>{String(index + 1).padStart(2, "0")}</small>{skill}</li>
+        ))}
+      </ul>
     </section>
   );
 }
 
-export function EducationSection() {
+export function TrustSection() {
   return (
-    <section className="education section">
-      <div className="section-label" data-reveal>05 — Formação</div>
-      <div className="education-grid">
+    <section className="trust section" aria-labelledby="trust-title">
+      <div className="section-heading">
+        <span>Empresas e projetos</span>
+        <h2 id="trust-title">Experiência construída em ambientes exigentes.</h2>
+      </div>
+      <div className="trust-grid">
+        <article><Image src="/logos/accenture.png" alt="Accenture" width={1800} height={579} unoptimized /><span>Consultoria e tecnologia</span></article>
+        <article><Image src="/logos/compass-uol.png" alt="Compass UOL" width={1024} height={1024} unoptimized /><span>Transformação digital</span></article>
+        <article className="wordmark vivo"><strong>vivo</strong><span>Telecom B2B e B2C</span></article>
+        <article className="wordmark porto"><strong>porto</strong><span>Seguros e serviços</span></article>
+      </div>
+      <div className="education-list">
         {education.map((item) => (
-          <article key={item.course} data-reveal>
+          <article key={item.course}>
             <span>{item.period}</span>
             <h3>{item.course}</h3>
             <p>{item.institution}</p>
@@ -215,17 +210,18 @@ export function EducationSection() {
 export function ContactFooter() {
   return (
     <footer id="contato">
-      <div className="footer-kicker">Tem um projeto ou oportunidade?</div>
-      <h2>Vamos construir<br /><em>algo relevante.</em></h2>
-      <a className="email" href="mailto:mauricioreiscds@gmail.com">
-        mauricioreiscds@gmail.com ↗
-      </a>
+      <div className="footer-top">
+        <span>Tem um projeto ou oportunidade?</span>
+        <p>Disponível para trabalho remoto e projetos no Brasil.</p>
+      </div>
+      <h2>Vamos transformar uma boa ideia em uma experiência <em>inesquecível.</em></h2>
+      <div className="contact-actions">
+        <a href="mailto:mauricioreiscds@gmail.com">Enviar e-mail <span>↗</span></a>
+        <a href="https://www.linkedin.com/in/maur%C3%ADcio-reis-45634a1a9/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+      </div>
       <div className="footer-bottom">
-        <span>Juiz de Fora, MG • Brasil</span>
-        <div>
-          <a href="https://www.linkedin.com/in/maur%C3%ADcio-reis-45634a1a9/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          <a href="#inicio">Voltar ao topo ↑</a>
-        </div>
+        <span>Juiz de Fora, Minas Gerais · Brasil</span>
+        <a href="#inicio">Voltar ao topo ↑</a>
         <span>© 2026 Maurício Reis</span>
       </div>
     </footer>

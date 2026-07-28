@@ -1,67 +1,54 @@
-import type { PointerEvent } from "react";
 import Image from "next/image";
 
-type HeroProps = { role: string };
-
-export function Hero({ role }: HeroProps) {
-  const moveVisual = (event: PointerEvent<HTMLElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-    event.currentTarget.style.setProperty("--pointer-x", x.toFixed(3));
-    event.currentTarget.style.setProperty("--pointer-y", y.toFixed(3));
-  };
-
+export function Hero() {
   return (
-    <section className="hero" id="inicio" onPointerMove={moveVisual}>
-      <div className="hero-visual" aria-hidden="true">
-        <div className="portrait-backdrop" />
-        <div className="portrait-card">
+    <section className="hero" id="inicio" aria-labelledby="hero-title">
+      <div className="hero-status">
+        <span aria-hidden="true" />
+        Disponível para projetos e oportunidades
+      </div>
+
+      <div className="hero-copy">
+        <p className="hero-kicker">Frontend Developer · Tech Lead · Brasil</p>
+        <h1 id="hero-title">
+          Desenvolvo sites e produtos digitais que unem
+          <em> clareza, performance e personalidade.</em>
+        </h1>
+        <p className="hero-summary">
+          Sou Maurício Reis, desenvolvedor Frontend Sênior em Juiz de Fora,
+          especializado em React, TypeScript, Angular e Vue.js. Transformo
+          objetivos de negócio em experiências digitais rápidas, acessíveis e
+          escaláveis.
+        </p>
+        <div className="hero-actions">
+          <a className="button primary" href="#projetos">Ver projetos <span>↓</span></a>
+          <a className="button secondary" href="mailto:mauricioreiscds@gmail.com">
+            Falar comigo <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="hero-portrait" aria-label="Retrato de Maurício Reis">
+        <div className="portrait-window">
           <Image
             src="/mauricio-reis.jpg"
-            alt=""
+            alt="Maurício Reis, desenvolvedor Frontend Sênior"
             width={853}
             height={1280}
             priority
             unoptimized
-            sizes="(max-width: 720px) 54vw, 30vw"
+            sizes="(max-width: 760px) 80vw, 32vw"
           />
-          <span className="portrait-caption">Maurício Reis · 2026</span>
         </div>
-        <div className="hero-ring ring-one"><i /></div>
-        <div className="hero-ring ring-two"><i /></div>
-        <span className="floating-tag tag-code">&lt;creative /&gt;</span>
-        <span className="floating-tag tag-place">JF · MG</span>
-        <span className="spark spark-one">✦</span>
-        <span className="spark spark-two">✦</span>
+        <span className="portrait-code">&lt;feito com intenção /&gt;</span>
+        <span className="portrait-location">JF · MG</span>
+        <div className="portrait-orbit" aria-hidden="true"><i /><i /></div>
       </div>
-      <div className="eyebrow"><span /> Disponível para novos desafios</div>
-      <h1>
-        Construo experiências
-        <br />
-        digitais que <em>movem.</em>
-      </h1>
-      <div className="hero-bottom">
-        <p>
-          Desenvolvedor Frontend com mais de 5 anos transformando problemas
-          complexos em interfaces claras, rápidas e escaláveis.
-        </p>
-        <div className="role-switch" aria-live="polite">
-          <span>Atuação</span>
-          <strong key={role}>{role}</strong>
-        </div>
-      </div>
-      <a className="scroll-cue" href="#sobre">
-        <span>Role para explorar</span>
-        <i>↓</i>
-      </a>
-      <div className="hero-marquee" aria-hidden="true">
-        <div>
-          <span>React</span><i>✦</i><span>TypeScript</span><i>✦</i>
-          <span>Interfaces que movem</span><i>✦</i><span>Creative frontend</span><i>✦</i>
-          <span>React</span><i>✦</i><span>TypeScript</span><i>✦</i>
-          <span>Interfaces que movem</span><i>✦</i><span>Creative frontend</span><i>✦</i>
-        </div>
+
+      <div className="hero-proof" aria-label="Resumo profissional">
+        <span><strong>5+</strong> anos criando interfaces</span>
+        <span><strong>4</strong> ecossistemas frontend</span>
+        <span><strong>Tech Lead</strong> visão de produto e engenharia</span>
       </div>
     </section>
   );
