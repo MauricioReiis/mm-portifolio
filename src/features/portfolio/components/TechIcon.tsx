@@ -14,6 +14,12 @@ const icons: Record<string, { src: string; color: string }> = {
   Vercel: { src: "/icons/tech/vercel.svg", color: "#11120f" },
   "Next.js": { src: "/icons/tech/nextdotjs.svg", color: "#11120f" },
   GSAP: { src: "/icons/tech/gsap.svg", color: "#65a30d" },
+  "Vue.js": { src: "/icons/tech/vuedotjs.svg", color: "#42b883" },
+  Angular: { src: "/icons/tech/angular.svg", color: "#dd0031" },
+  AWS: { src: "/icons/tech/amazonwebservices.svg", color: "#ff9900" },
+  APIs: { src: "/icons/tech/openapiinitiative.svg", color: "#6ba539" },
+  Testes: { src: "/icons/tech/vitest.svg", color: "#729b1b" },
+  Cloud: { src: "/icons/tech/cloudflare.svg", color: "#f48120" },
 };
 
 export function TechIcon({ name }: TechIconProps) {

@@ -164,7 +164,12 @@ export function ExperienceSection() {
             </div>
             <p>{item.description}</p>
             <ul aria-label={`Tecnologias usadas em ${item.company}`}>
-              {item.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+              {item.technologies.map((technology) => (
+                <li key={technology}>
+                  <TechIcon name={technology} />
+                  <span>{technology}</span>
+                </li>
+              ))}
             </ul>
           </article>
         ))}
