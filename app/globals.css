@@ -188,6 +188,11 @@ footer h2 em { color: #4e550e; }
   inset: 0;
   pointer-events: none;
   contain: strict;
+  opacity: 1;
+  transition: opacity .35s ease;
+}
+.avatar-reactions.is-hidden {
+  opacity: 0;
 }
 .avatar-reaction {
   position: absolute;
@@ -229,6 +234,48 @@ footer h2 em { color: #4e550e; }
 .avatar-reaction[data-avatar-section="habilidades"] { right: 2.5vw; bottom: 4vh; }
 .avatar-reaction[data-avatar-section="credenciais"] { left: 3vw; bottom: 4vh; }
 .avatar-reaction[data-avatar-section="contato"] { right: 3vw; bottom: 3vh; }
+.avatar-visibility-toggle {
+  position: fixed;
+  z-index: 46;
+  left: 50%;
+  bottom: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 13px 7px 8px;
+  border: 1px solid rgba(20,22,17,.38);
+  border-radius: 999px;
+  background: rgba(242,239,231,.88);
+  color: var(--ink);
+  box-shadow: 0 5px 18px rgba(20,22,17,.1);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font: 9px/1 var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.avatar-visibility-toggle:hover {
+  background: var(--lime);
+  border-color: var(--ink);
+  transform: translateX(-50%) translateY(-2px);
+}
+.avatar-visibility-toggle:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.avatar-toggle-icon {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  font: 15px/1 var(--font-body);
+}
 
 main, footer { position: relative; z-index: 2; }
 
@@ -241,11 +288,11 @@ main, footer { position: relative; z-index: 2; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
-  .avatar-reactions { display: none; }
+  .avatar-reactions, .avatar-visibility-toggle { display: none; }
 }
 
 @media (max-width: 900px) {
-  .avatar-reactions { display: none; }
+  .avatar-reactions, .avatar-visibility-toggle { display: none; }
   .hero { grid-template-columns: 1fr .55fr; }
   .section-heading { grid-template-columns: 1fr 2fr; }
   .section-heading > p { grid-column: 2; }

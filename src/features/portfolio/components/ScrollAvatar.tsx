@@ -22,7 +22,27 @@ const sectionOrder = Object.keys(avatarBySection) as AvatarSection[];
 
 export function ScrollAvatar() {
   const [activeSection, setActiveSection] = useState<AvatarSection>("inicio");
+  const [isVisible, setIsVisible] = useState(true);
   const stageRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const savedPreference = window.localStorage.getItem("portfolio-avatar-visible");
+    if (savedPreference === null) return;
+
+    const preferenceFrame = window.requestAnimationFrame(() => {
+      setIsVisible(savedPreference === "true");
+    });
+
+    return () => window.cancelAnimationFrame(preferenceFrame);
+  }, []);
+
+  const toggleAvatar = () => {
+    setIsVisible((currentValue) => {
+      const nextValue = !currentValue;
+      window.localStorage.setItem("portfolio-avatar-visible", String(nextValue));
+      return nextValue;
+    });
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -94,31 +114,44 @@ export function ScrollAvatar() {
   }, []);
 
   return (
-    <aside
-      ref={stageRef}
-      className="avatar-reactions"
-      aria-hidden="true"
-      data-section={activeSection}
-    >
-      {sectionOrder.map((sectionId) => (
-        <div
-          className={`avatar-reaction${activeSection === sectionId ? " is-active" : ""}`}
-          data-avatar-section={sectionId}
-          key={sectionId}
-        >
-          <div className="avatar-reaction-motion">
-            <Image
-              src={avatarBySection[sectionId]}
-              alt=""
-              width={900}
-              height={1350}
-              unoptimized
-              priority={sectionId === "inicio"}
-              sizes="(max-width: 900px) 0px, 160px"
-            />
+    <>
+      <aside
+        ref={stageRef}
+        className={`avatar-reactions${isVisible ? "" : " is-hidden"}`}
+        aria-hidden="true"
+        data-section={activeSection}
+      >
+        {sectionOrder.map((sectionId) => (
+          <div
+            className={`avatar-reaction${activeSection === sectionId ? " is-active" : ""}`}
+            data-avatar-section={sectionId}
+            key={sectionId}
+          >
+            <div className="avatar-reaction-motion">
+              <Image
+                src={avatarBySection[sectionId]}
+                alt=""
+                width={900}
+                height={1350}
+                unoptimized
+                priority={sectionId === "inicio"}
+                sizes="(max-width: 900px) 0px, 160px"
+              />
+            </div>
           </div>
-        </div>
-      ))}
-    </aside>
+        ))}
+      </aside>
+      <button
+        className="avatar-visibility-toggle"
+        type="button"
+        aria-pressed={!isVisible}
+        onClick={toggleAvatar}
+      >
+        <span className="avatar-toggle-icon" aria-hidden="true">
+          {isVisible ? "−" : "+"}
+        </span>
+        {isVisible ? "Ocultar avatar" : "Exibir avatar"}
+      </button>
+    </>
   );
 }
