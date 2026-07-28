@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { education, experiences, projects, services, skills } from "../content";
 import type { Project } from "../types";
+import { TechIcon } from "./TechIcon";
 
 function ProjectArtwork({ project }: { project: Project }) {
   if (project.artwork === "kamila") {
@@ -63,17 +64,6 @@ export function ProjectsSection() {
       <div className="case-studies">
         {projects.map((project) => (
           <article className={`project-case project-${project.artwork}`} key={project.id}>
-            <header className="project-header">
-              <span>Projeto {project.id} / {String(projects.length).padStart(2, "0")}</span>
-              <p>{project.category}</p>
-              <a href={project.url} target="_blank" rel="noreferrer">
-                Abrir projeto <span>↗</span>
-              </a>
-            </header>
-            <div className="project-intro">
-              <h3>{project.name}</h3>
-              <p>{project.summary}</p>
-            </div>
             <a
               className="project-preview"
               href={project.url}
@@ -85,21 +75,34 @@ export function ProjectsSection() {
               <ProjectArtwork project={project} />
               <span className="project-link">Ver online ↗</span>
             </a>
-            <div className="project-details">
-              <div>
-                <h4>Minha atuação</h4>
-                <p>{project.role}</p>
-              </div>
-              <div>
-                <h4>Implementação</h4>
-                <p>{project.implementation}</p>
+            <div className="project-card-content">
+              <header className="project-header">
+                <span>Projeto {project.id} / {String(projects.length).padStart(2, "0")}</span>
+                <p>{project.category}</p>
+              </header>
+              <div className="project-intro">
+                <h3>{project.name}</h3>
+                <p>{project.summary}</p>
               </div>
               <div className="project-stack">
                 <h4>Stack utilizada</h4>
                 <ul aria-label={`Tecnologias utilizadas em ${project.name}`}>
-                  {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                  {project.tags.map((tag) => <li key={tag}><TechIcon name={tag} /></li>)}
                 </ul>
               </div>
+              <details className="project-details" name="project-details">
+                <summary>
+                  Detalhes técnicos
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <div>
+                  <h4>Implementação</h4>
+                  <p>{project.implementation}</p>
+                  <a href={project.url} target="_blank" rel="noreferrer">
+                    Abrir projeto <span>↗</span>
+                  </a>
+                </div>
+              </details>
             </div>
           </article>
         ))}
@@ -171,6 +174,8 @@ export function ExperienceSection() {
 }
 
 export function SkillsSection() {
+  const portfolioStack = ["Next.js", "React", "TypeScript", "GSAP", "Vite", "CSS"];
+
   return (
     <section className="skills-section section" id="habilidades" aria-labelledby="skills-title">
       <div>
@@ -186,6 +191,20 @@ export function SkillsSection() {
           <li key={skill}><small>{String(index + 1).padStart(2, "0")}</small>{skill}</li>
         ))}
       </ul>
+      <div className="portfolio-stack">
+        <div>
+          <span>Construído com</span>
+          <p>A stack usada para desenvolver este portfólio.</p>
+        </div>
+        <ul aria-label="Tecnologias utilizadas neste portfólio">
+          {portfolioStack.map((technology) => (
+            <li key={technology}>
+              <TechIcon name={technology} />
+              <span>{technology}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

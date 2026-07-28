@@ -31,10 +31,8 @@ export const projects: Project[] = [
     category: "Landing page · Marca pessoal",
     summary:
       "Landing page autoral desenvolvida como uma experiência de página única, com navegação direta, composição editorial e comportamento responsivo.",
-    role:
-      "Desenvolvimento frontend, estrutura de componentes, estilização responsiva, interações e publicação.",
     implementation:
-      "Interface componentizada em React, empacotada com Vite e publicada na Vercel. As entradas de conteúdo usam observação de viewport para preservar fluidez sem bloquear a navegação.",
+      "Interface componentizada em React, empacotada com Vite e publicada na Vercel. O CSS responsivo organiza tipografia e composição para diferentes telas, enquanto a observação de viewport ativa as entradas de conteúdo sem bloquear a navegação.",
     url: "https://kamilasiqueira.com/",
     tags: ["React", "Vite", "JavaScript", "CSS responsivo", "Vercel"],
     artwork: "kamila",
@@ -45,10 +43,8 @@ export const projects: Project[] = [
     category: "Site institucional · Infraestrutura",
     summary:
       "Site institucional construído em blocos modulares para apresentar a empresa, suas áreas de atuação e projetos em diferentes tamanhos de tela.",
-    role:
-      "Implementação frontend, arquitetura visual dos componentes, responsividade, organização de conteúdo e deploy.",
     implementation:
-      "Aplicação React com build otimizado pelo Vite e hospedagem na Vercel. A estrutura prioriza componentes reutilizáveis, ativos visuais responsivos e entrega estática rápida.",
+      "Aplicação React com build otimizado pelo Vite e hospedagem na Vercel. A estrutura separa o conteúdo em componentes reutilizáveis, organiza ativos visuais responsivos e gera uma entrega estática rápida.",
     url: "https://www.pranainfra.com.br/",
     tags: ["React", "Vite", "JavaScript", "CSS responsivo", "Vercel"],
     artwork: "prana",
