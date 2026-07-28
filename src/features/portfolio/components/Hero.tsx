@@ -45,10 +45,22 @@ export function Hero() {
         <div className="portrait-orbit" aria-hidden="true"><i /><i /></div>
       </div>
 
-      <div className="hero-proof" aria-label="Resumo profissional">
-        <span><strong>5+</strong> anos criando interfaces</span>
-        <span><strong>4</strong> ecossistemas frontend</span>
-        <span><strong>Tech Lead</strong> visão de produto e engenharia</span>
+      <div className="hero-proof" aria-label="Destaques da experiência profissional">
+        <article className="proof-years">
+          <span>Experiência frontend</span>
+          <strong>5+</strong>
+          <p>anos transformando requisitos complexos em interfaces claras.</p>
+        </article>
+        <article>
+          <span>Liderança técnica</span>
+          <strong>Tech Lead</strong>
+          <p>Arquitetura, code review, qualidade e evolução de times.</p>
+        </article>
+        <article>
+          <span>Produtos de escala</span>
+          <strong>B2B + B2C</strong>
+          <p>Experiência em projetos para Accenture, Vivo e Compass UOL.</p>
+        </article>
       </div>
     </section>
   );
