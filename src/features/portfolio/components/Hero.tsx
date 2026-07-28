@@ -47,19 +47,9 @@ export function Hero() {
 
       <div className="hero-proof" aria-label="Destaques da experiência profissional">
         <article className="proof-years">
-          <span>Experiência frontend</span>
-          <strong>5+</strong>
-          <p>anos transformando requisitos complexos em interfaces claras.</p>
-        </article>
-        <article>
-          <span>Liderança técnica</span>
-          <strong>Tech Lead</strong>
-          <p>Arquitetura, code review, qualidade e evolução de times.</p>
-        </article>
-        <article>
-          <span>Produtos de escala</span>
-          <strong>B2B + B2C</strong>
-          <p>Experiência em projetos para Accenture, Vivo e Compass UOL.</p>
+          <span>Trajetória profissional</span>
+          <strong>5+ <small>anos</small></strong>
+          <p>Desenvolvendo interfaces e produtos digitais desde 2021.</p>
         </article>
       </div>
     </section>
